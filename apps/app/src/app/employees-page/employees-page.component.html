@@ -1,0 +1,16 @@
+<ng-container *ngIf="employees$ | async as employees">
+  <div class="max-w-7xl mx-auto">
+    <div
+      class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 place-items-center"
+    >
+      <ng-container *ngFor="let employee of employees">
+        <div class="m-2">
+          <app-employee
+            class="place-self-center"
+            [employee]="employee"
+          ></app-employee>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>

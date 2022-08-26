@@ -8,8 +8,4 @@ import { EmployeesApiService } from './employees-api.service';
 })
 export class AppComponent {
   title = 'app';
-
-  constructor(private readonly api: EmployeesApiService) {
-    this.api.get().subscribe(console.log);
-  }
 }
