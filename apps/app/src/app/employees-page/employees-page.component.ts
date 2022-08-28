@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Employee } from '../employee';
+import { Employee } from '../models/employee';
 import { EmployeesApiService } from '../employees-api.service';
+import { SortOption } from '../models/sort-on';
 
 @Component({
   selector: 'app-employees-page',
@@ -9,9 +10,21 @@ import { EmployeesApiService } from '../employees-api.service';
   styleUrls: ['./employees-page.component.scss'],
 })
 export class EmployeesPageComponent {
-  employees$: Observable<Employee[]>;
+  sortOptions: SortOption[] = [
+    { text: 'Name', value: 'name' },
+    { text: 'Office', value: 'office' },
+  ];
+  employees$: Observable<Employee[]> = this.api.employees$;
 
   constructor(private readonly api: EmployeesApiService) {
-    this.employees$ = this.api.get();
+    this.api.get();
+  }
+
+  search(searchTerm: string): void {
+    this.api.search(searchTerm);
+  }
+
+  sort(key: keyof Employee): void {
+    this.api.sort(key);
   }
 }

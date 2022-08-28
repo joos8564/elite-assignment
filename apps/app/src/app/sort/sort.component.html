@@ -1,0 +1,7 @@
+<form [formGroup]="sortForm">
+  <select formControlName="sort" class="select w-full">
+    <option *ngFor="let sort of sortOn" [ngValue]="sort.value">
+      {{ sort.text }}
+    </option>
+  </select>
+</form>

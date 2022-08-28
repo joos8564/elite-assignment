@@ -1,10 +1,21 @@
 <ng-container *ngIf="employees$ | async as employees">
-  <div class="max-w-7xl mx-auto">
+  <main class="max-w-7xl mx-auto">
+    <div class="md:flex bg-blue-400 rounded-lg p-5">
+      <app-search
+        class="md:w-3/4 mr-5 w-full"
+        (searchTerm)="search($event)"
+      ></app-search>
+      <app-sort
+        [sortOn]="sortOptions"
+        (sortChange)="sort($event)"
+        class="md:w-1/4 w-full mt-2 md:mt-0"
+      ></app-sort>
+    </div>
     <div
       class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 place-items-center"
     >
       <ng-container *ngFor="let employee of employees">
-        <div class="m-2">
+        <div class="my-2">
           <app-employee
             class="place-self-center"
             [employee]="employee"
@@ -12,5 +23,5 @@
         </div>
       </ng-container>
     </div>
-  </div>
+  </main>
 </ng-container>
